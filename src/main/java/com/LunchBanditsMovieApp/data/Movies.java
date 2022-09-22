@@ -1,4 +1,4 @@
-package com.example.movieskiranataliemidlyn.Class;
+package com.LunchBanditsMovieApp.data;
 
 import lombok.*;
 

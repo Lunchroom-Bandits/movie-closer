@@ -2,8 +2,8 @@ package com.LunchBanditsMovieApp.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-
 import javax.persistence.*;
+import java.util.Collection;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Table(name= "genre")
+@Table(name= "genres")
 public class Genre {
 
     @Id
@@ -26,12 +26,12 @@ public class Genre {
             cascade = {CascadeType.DETACH, CascadeType.REFRESH},
             targetEntity = Movies.class)
     @JoinTable(
-            name="movie_genre",
+            name="movie_genres",
             joinColumns = {@JoinColumn(name = "genre_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name="movie_id", nullable = false, updatable = false)},
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
     @JsonIgnoreProperties("genres")
-    private Collection<Movie> movies;
+    private Collection<Movies> movies;
 }

@@ -1,14 +1,10 @@
 package com.LunchBanditsMovieApp.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
-import org.hibernate.annotations.Table;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.Collection;
 
 @Getter
@@ -17,7 +13,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name= "movies")
+@Table(name = "movies")
 public class Movies {
 
     @Id
@@ -33,6 +29,17 @@ public class Movies {
     @Column(nullable = false, length = 100)
     private String director;
 
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            targetEntity = Genre.class)
+    @JoinTable(
+            name="movie_genres",
+            joinColumns = {@JoinColumn(name = "movie_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="genre_id", nullable = false, updatable = false)},
+            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+    )
     @JsonIgnoreProperties("movies")
     private Collection<Genre> genres;
 

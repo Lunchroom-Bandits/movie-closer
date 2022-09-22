@@ -1,6 +1,5 @@
-package com.example.movieskiranataliemidlyn.Controllers;
+package com.LunchBanditsMovieApp.controllers;
 
-import com.example.movieskiranataliemidlyn.Class.Movies;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

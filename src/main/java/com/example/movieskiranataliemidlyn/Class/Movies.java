@@ -13,5 +13,5 @@ public class Movies {
     private String title;
     private String genre;
     private String rating;
-    private String director;
+    private String director; sealed;
 }

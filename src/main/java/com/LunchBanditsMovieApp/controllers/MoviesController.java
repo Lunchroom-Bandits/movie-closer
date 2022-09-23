@@ -1,6 +1,7 @@
 package com.LunchBanditsMovieApp.controllers;
 
 import com.LunchBanditsMovieApp.data.Movies;
+import com.LunchBanditsMovieApp.repositories.GenreRepository;
 import com.LunchBanditsMovieApp.repositories.MoviesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RequestMapping(value = "/api/movies", produces = "application/json")
 public class MoviesController {
     private MoviesRepository moviesRepository;
+    private GenreRepository genreRepository;
 
 
     @GetMapping("")
@@ -50,10 +52,10 @@ public class MoviesController {
         if (optionalMovies.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post " + id + " not found");
         }
-        Movies originalPost = optionalMovies.get();
+        Movies originalMovie = optionalMovies.get();
 
         updatedMovies.setId(id);
-        moviesRepository.save(updatedMovies);
+        moviesRepository.save(originalMovie);
     }
     // copy any new field values FROM updatedPost TO originalPost
 //        BeanUtils.copyProperties(updatedPost, originalPost, FieldHelper.getNullPropertyNames(updatedPost));

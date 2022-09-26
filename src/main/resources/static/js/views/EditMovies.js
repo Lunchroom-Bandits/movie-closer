@@ -12,6 +12,7 @@ export default function editMoviesHTML (props) {
 
     <form>
         <input class="form-control" list="datalistOptions" id="newTInput" placeholder="Enter Title">
+        <input class="form-control" list="datalistOptions" id="newDInput" placeholder="Enter Director">
         <input class="form-control" list="datalistOptions" id="newRInput" placeholder="Enter Rating">
         <input class="form-control" list="datalistOptions" id="newGInput" placeholder="Enter Genre">
 <!--        <input class="form-control" list="datalistOptions" id="newGInput" placeholder="Enter ID">-->
@@ -36,7 +37,6 @@ function addExistingMoviesEditPage(){
         let Director = data[i].director;
         let Rating = data[i].rating
         let Genre = data[i].genre
-        let Plot = data[i].plot
         // let ID = data[i].id
         placeMoviesHere.innerHTML +=
             `
@@ -53,9 +53,6 @@ function addExistingMoviesEditPage(){
                     Genre:  
                    <input class="text-input genreInput" value = "${Genre}">
                      <hr>
-                    Plot:  
-                   <input class="text-input plotInput" value = "${Plot}">
-                    <hr>
                     <button id="saveBtn" class="saveBtn btn bg-secondary" data-id="${data[i].id}">Save</button>
                     <button id="deleteBtn" class="dltBtn btn bg-secondary" data-id="${data[i].id}">Delete</button>
                 </div>
@@ -71,8 +68,7 @@ export function MovieEditsJS() {
         title: "",
         director: "",
         rating: "",
-        genre: "",
-        plot: ""
+        genre: ""
     }
 
     //begin add movies here
@@ -110,16 +106,13 @@ export function MovieEditsJS() {
 
                 let genreInput = document.querySelectorAll(".genreInput");
                 editedM.genre = genreInput[j].value;
-
-                let plotInput = document.querySelectorAll(".plotInput");
-                editedM.plot = plotInput[j].value;
             }
-            //how do I extract the values of titleEdit, etc. to  here??
+            // how do I extract the values of titleEdit, etc. to  here??
 
 
             console.log("Edited movie is ready to be inserted");
             const requestOptions = {
-                method: "PATCH",
+                method: "PUT",
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -127,7 +120,7 @@ export function MovieEditsJS() {
             }
             //the [i] below references whatever card I am on, to modify
             const dataID = movieCardSaveBtns[i].getAttribute('data-id');
-            fetch(`https://localhost:9001/api/movies/${dataID}`, requestOptions)
+            fetch(`http://localhost:9001/api/movies/${dataID}`, requestOptions)
                 .then(function (response) {
                     if (!response.ok) {
                         console.log("add movie error: " + response.status);
@@ -162,7 +155,7 @@ export function MovieEditsJS() {
                 method: "DELETE"
             }
             const dataID = movieCardDltBtns[i].getAttribute('data-id');
-            fetch(`https://localhost:9001/api/movies/${dataID}`, requestOptions)
+            fetch(`http://localhost:9001/api/movies/${dataID}`, requestOptions)
                 .then(function (response) {
                     if (!response.ok) {
                         console.log("delete movie error: " + response.status);
@@ -186,6 +179,13 @@ export function MovieEditsJS() {
             alert("Please enter title!");
             return;
         }
+        const directorEnter = document.querySelector("#newDInput");
+        //this is where we get the value of the title input to post to database, minus whitespace
+        const director = directorEnter.value.trim();
+        if (director.length < 1) {
+            alert("Please enter director!");
+            return;
+        }
         const ratingEnter = document.querySelector("#newRInput");
         //this is where we get the value of the rating input to post to database, minus whitespace
         const rating = ratingEnter.value.trim();
@@ -204,6 +204,7 @@ export function MovieEditsJS() {
         //this is how to arrange data to be sent to database(in an order so that we can pull it again)
         const newME = {
             title: title,
+            director: director,
             rating: rating,
             genre: genre,
         };
@@ -216,7 +217,7 @@ export function MovieEditsJS() {
             },
             body: JSON.stringify(newME)
         }
-        fetch('https://localhost:9001/api/movies', requestOptions)
+        fetch('http://localhost:9001/api/movies', requestOptions)
             .then(function (response) {
                 if (!response.ok) {
                     console.log("add movie error: " + response.status);

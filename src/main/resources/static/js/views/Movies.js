@@ -34,7 +34,7 @@ function addExistingMovies(){
             `
             
             <div class="card movieCard">
-// <!--                <article>${T}</article> -->
+<!--                <article>${T}</article> -->
 <!--                <hr style="height: 5px;-->
 <!--                          border: 1px;-->
 <!--                          box-shadow: inset 0 9px 9px -3px rgba(11, 99, 184, 0.8);">-->

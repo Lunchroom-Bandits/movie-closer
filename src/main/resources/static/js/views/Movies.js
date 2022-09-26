@@ -5,7 +5,8 @@ const BASE_URI = `${BACKEND_HOST}/api/s3/download`;
 
 let data
 export default function Movies(props) {
-    data = props.movies
+    data = props.movies;
+    console.log(data);
     return `
         <header>
             <h1 id="movieH1">Media Surf</h1>

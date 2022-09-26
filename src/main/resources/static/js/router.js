@@ -22,7 +22,7 @@ export default function router(URI) {
             returnView: Movies,
             state: {
                 movies: {
-                    url: 'https://rambunctious-cumbersome-silence.glitch.me/movies',
+                    url: '/api/movies',
                     headers: {
                         'Content-Type': 'application/json'
                     }

@@ -6,13 +6,13 @@
  * @param request
  * @returns {Promise<{}>}
  */
-import createView from "./createView";
+import createView from "./createView.js";
 
 // const BASE_URI = `${BACKEND_HOST}`;
 
 export default function fetchData(state, request) {
     const promises = [];
-    const baseUri = "https://localhost:9001";
+    const baseUri = "http://localhost:9001";
 
     //TODO: this needs to be moved to a prop file or env variable
 
@@ -35,8 +35,9 @@ export default function fetchData(state, request) {
         //     }
         // }
         // console.log("request URL: " + url);
+        console.log(baseUri + state[pieceOfState].url);
         promises.push(
-            fetch(baseUri + state[pieceOfState], request)
+            fetch(baseUri + state[pieceOfState].url, request)
                 .then(function (res) {
                     // if(res.status === 400 && res.url.includes("oauth/token")){
                     return res.json();

@@ -4,21 +4,30 @@ export default function Navbar(props) {
     const loggedIn = isLoggedIn();
 
     // everyone can see home
-    let html = `
-        <nav class="navbar">
-            <ul class="navbar-nav">
-                <li>
-                    <a class="jalopy-nav" href="/" data-link>Home</a>
-                </li>
-            
-                <li>
-                    <a class="jalopy-nav" href="/about" data-link>About</a>
-                   </li>
-                <li>
-                    <a class="jalopy-nav" href="/editMovies" data-link>Edit Movies</a>
-                </li>
+    // let html = `
+    //     <nav class="navbar">
+    //         <ul class="navbar-nav">
+    //             <li>
+    //                 <a class="jalopy-nav" href="/" data-link>Home</a>
+    //             </li>
+    //
+    //             <li>
+    //                 <a class="jalopy-nav" href="/about" data-link>About</a>
+    //                </li>
+    //             <li>
+    //                 <a class="jalopy-nav" href="/editMovies" data-link>Edit</a>
+    //             </li>
+    //         </ul>
+    //     </nav>`;
+    let html= `
+        <nav class="menu">
+            <ul>
+                <li><a href="/" data-link>Movies</a></li>
+                <li><a href="/about" data-link>About</a></li>
+                <li><a href="/editMovies" data-link>Edit</a></li>
             </ul>
         </nav>`;
+
 
     // only logged in can see user info and logout
     // if(loggedIn) {

@@ -34,12 +34,9 @@ export default function fetchData(state, request) {
         //         url = state[pieceOfState];
         //     }
         // }
-        // console.log("request URL: " + url);
-        console.log(baseUri + state[pieceOfState].url);
         promises.push(
             fetch(baseUri + state[pieceOfState].url, request)
                 .then(function (res) {
-                    // if(res.status === 400 && res.url.includes("oauth/token")){
                     return res.json();
                 }));
     }

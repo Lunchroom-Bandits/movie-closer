@@ -34,7 +34,7 @@ export default async function createView(URI) {
     }
     fetchData(route.state, request).then((props) => {
         // Restore the title so that history entries are not all 'Loading...'
-        // I tried using route.uri here instead, but it seems there's an off-by-one bug (https://stackoverflow.com/a/38830794)
+        // I tried using route.uri here instead, but it seems there off-by-one bug (https://stackoverflow.com/a/38830794)
         document.title = currentTitle;
         // Add the current page to the history stack
         history.pushState({...props, lastUri: route.uri}, null, route.uri)

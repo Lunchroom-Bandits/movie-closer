@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;700;800&display=swap');
 
 :root {
     --clr-neon: hsl(317 100% 54%);
@@ -8,9 +9,9 @@
     margin-right: 1em;
 }
 .movieCard {
-    border: 3px solid lightgray;
+    font-family: 'Dosis', sans-serif;
     text-wrap: normal;
-    /*border-radius: 10px;*/
+    border-radius: 10px;
     /*overflow-y: scroll;*/
     /*width: 50%;*/
     /*height: 10px;*/
@@ -65,7 +66,7 @@ h1 {
     padding-left: 0;
     margin-bottom: 15px;
     list-style: none;
-    font-family: "BM Hanna Air";
+    font-family: "Dosis", sans-serif;
     font-weight: bolder;
     font-size: xxx-large;
 }
@@ -77,13 +78,24 @@ h1 {
 .card {
     display: inline-block;
     width: 20vw;
-    /*height: 25vw;*/
+    height: 25vw;
     /*text-wrap: inherit;*/
     /*width: min-content;*/
     opacity: 0.8;
     overflow: scroll;
     box-shadow: 0 0 10px 0 black;
 }
+
+.aboutInfo {
+    font-family: "Dosis", sans-serif;
+}
+
+.aboutHeader {
+    font-family: "Dosis", sans-serif;
+    font-weight: bolder;
+    font-size: 10vh;
+}
+
 html {
     height: 100vh;
 
@@ -102,6 +114,10 @@ body {
 }
 #movieH1 {
     color: white;
+    font-family: 'Dosis', sans-serif;
+    font-weight: bolder;
+    font-size: 10vh;
+    filter: drop-shadow(2px 3px 10px rgba(0, 0, 0, .5));
 }
 
 #h1E {

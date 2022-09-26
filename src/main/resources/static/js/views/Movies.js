@@ -13,7 +13,7 @@ export default function Movies(props) {
         </header>
         <main>
             <div id="moviesHere" class="scrolling-wrapper"></div>
-            <div id="moviesHere2" class="scrolling-wrapper"></div>
+<!--            <div id="moviesHere2" class="scrolling-wrapper"></div>-->
         </main>
     `;
 }
@@ -22,7 +22,7 @@ function addExistingMovies(){
     console.log(data)
     //to access local array, replace data with quotesL
     let placeMoviesHere = document.querySelector("#moviesHere");
-    let placeMoviesHere2 = document.querySelector("#moviesHere2")
+    // let placeMoviesHere2 = document.querySelector("#moviesHere2")
 
     // quotesL = data
     for(let i =0;i < data.length;i++){
@@ -44,15 +44,15 @@ function addExistingMovies(){
                 Genre: ${G} <hr>
             </div>
             `
-        placeMoviesHere2.innerHTML +=
-            `
-             <div class="card movieCard">
-                Title: ${T} <hr>
-                Director: ${D} <hr>
-                Rating: ${R} <hr>
-                Genre: ${G} <hr>
-             </div>
-            `
+        // placeMoviesHere2.innerHTML +=
+        //     `
+        //      <div class="card movieCard">
+        //         Title: ${T} <hr>
+        //         Director: ${D} <hr>
+        //         Rating: ${R} <hr>
+        //         Genre: ${G} <hr>
+        //      </div>
+        //     `
     }
 }
 export function MovieEvents() {

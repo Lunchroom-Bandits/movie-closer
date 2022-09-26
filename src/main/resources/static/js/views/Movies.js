@@ -7,13 +7,14 @@ let data
 export default function Movies(props) {
     data = props.movies;
     console.log(data);
+    console.log(data[1].genres[0].name);
     return `
         <header>
             <h1 id="movieH1">Media Surf</h1>
         </header>
         <main>
             <div id="moviesHere" class="scrolling-wrapper"></div>
-<!--            <div id="moviesHere2" class="scrolling-wrapper"></div>-->
+            <div id="moviesHere2" class="scrolling-wrapper"></div>
         </main>
     `;
 }
@@ -25,13 +26,17 @@ function addExistingMovies(){
     // let placeMoviesHere2 = document.querySelector("#moviesHere2")
 
     // quotesL = data
-    for(let i =0;i < data.length;i++){
+    for(let i =0;i < data.length;i++) {
         let T = data[i].title;
         let D = data[i].director;
         let R = data[i].rating
         let G = data[i].genre
-        placeMoviesHere.innerHTML +=
-            `
+        for (let j = 0; j < data[i].genres.length; j++) {
+            console.log(data[i].genres[j].name)
+            let g = data[i].genres[j].name
+
+            placeMoviesHere.innerHTML +=
+                `
             
             <div class="card movieCard">
 <!--                <article>${T}</article> -->
@@ -41,18 +46,19 @@ function addExistingMovies(){
                 Title: ${T} <hr>          
                 Director: ${D} <hr>
                 Rating: ${R} <hr>
-                Genre: ${G} <hr>
+                Genre: ${g} <hr>
             </div>
             `
-        // placeMoviesHere2.innerHTML +=
-        //     `
-        //      <div class="card movieCard">
-        //         Title: ${T} <hr>
-        //         Director: ${D} <hr>
-        //         Rating: ${R} <hr>
-        //         Genre: ${G} <hr>
-        //      </div>
-        //     `
+            // placeMoviesHere2.innerHTML +=
+            //     `
+            //  <div class="card movieCard">
+            //     Title: ${T} <hr>
+            //     Director: ${D} <hr>
+            //     Rating: ${R} <hr>
+            //     Genre: ${g} <hr>
+            //  </div>
+            // `
+        }
     }
 }
 export function MovieEvents() {

@@ -20,6 +20,9 @@ export default function editMoviesHTML (props) {
     </form>
 </div>
     <main>
+    <p id="c"></p>
+    <input type="text" placeholder="search genre" id="z">
+<input type="button" value="genre search" id="x">
         <div id="moviesHere" class="scrolling-wrapper"></div>
     </main>
       
@@ -83,7 +86,7 @@ export function MovieEditsJS() {
     for(let i=0;i<movieCardSaveBtns.length;i++) {
         // this is for the edit cards button
         movieCardSaveBtns[i].addEventListener("click", function(){
-            alert("edited");
+            // alert("edited");
 
             //need to grab the value for the input fields, only on the card I am selecting
             //turn those values into constants, then put those constants into one constant to post to db
@@ -94,7 +97,7 @@ export function MovieEditsJS() {
             // need to reference specific card id here...
 
             let movieCards = document.querySelectorAll(".movieCard");
-            for(let j=0;j<movieCards.length;j++) {
+            // for(let j=0;j<movieCards.length;j++) {
                 let titleInput = document.querySelectorAll(".titleInput");
                 editedM.title = titleInput[j].value;
 
@@ -105,12 +108,13 @@ export function MovieEditsJS() {
                 editedM.rating = ratingInput[j].value;
 
                 let genreInput = document.querySelectorAll(".genreInput");
-                editedM.genre = genreInput[j].value;
-            }
+                editedM.genres = [ { id: 1}, {id: 3}, {id: 4}]//genreInput[j].value;
+            // }
             // how do I extract the values of titleEdit, etc. to  here??
 
-
-            console.log("Edited movie is ready to be inserted");
+            // console.log(editedM)
+            //
+            // console.log("Edited movie is ready to be inserted");
             const requestOptions = {
                 method: "PUT",
                 headers: {
@@ -132,6 +136,48 @@ export function MovieEditsJS() {
                 });
         });
     }
+
+    let directorButton = document.getElementById("x")
+    directorButton.addEventListener("click", function (event) {
+        console.log("chicken")
+
+
+
+        let paragraph = document.getElementById("c")
+        let directorSearch = document.getElementById("z").value
+        // paragraph.innerText = "hey"
+        let getMovie = {
+            method: "Get",
+            headers:{
+                'Content-Type': 'application/json',
+            },
+        }
+
+
+
+        fetch(`http://localhost:9001/api/genres/search?genreName=${directorSearch}`, getMovie)
+            .then(function(response) {
+                if(!response.ok) {
+                    console.log("movies search error: " + response.status);
+                } else {
+                    console.log("movie search complete");
+                    // createView('/movies');
+                    return response.json()
+                }
+            }).then(function (data) {
+            paragraph.innerText = ""
+            for (let i = 0; i < data.movies.length; i++) {
+                console.log(data.movies[i])
+                paragraph.innerText += data.movies[i].title + " ,"
+            }
+            console.log(data)
+            console.log(data.movies[0].title)
+
+            // paragraph.innerText = data.movies.title
+        });
+
+
+    })
 
 
 //delete old card from id then

@@ -8,7 +8,8 @@ export default function About(props) {
 </header>
 <main>
     <div id="aboutInfo">
-        <p>Searchable movies database brought to you by The Lunchroom Bandits</p>  
+        <p>Searchable movies database brought to you by The Lunchroom Bandits</p> 
+       
     </div>
 </main>
     `;
